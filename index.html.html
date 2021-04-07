@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> u n i v e r s o </title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+<script src="lugar.js"></script>
+<link rel="stylesheet" href="lugar.css">
+</head>
+<body>
+    <main>
+        <div class="general">
+            <div id="div 1"> 
+                <img src="img/UniversoLogo.png">
+                <form id="FormularioAlumne"  action="#" onsubmit=SortearCartas() >
+                    <input type="text" id="text_id" placeholder="Nombre y apellido"> 
+                    <input type="submit" value="Tirar las Cartas">
+                </form>
+
+            </div>
+            <div id="cartas">
+                <div id="content"class= "content">
+                    <div><img id="carta1" src="" width="500" onclick="SortearLugar()"></div>
+                    <div><img id="carta2" src=""width="500" onclick="SortearLugar()"></div>
+                    <div><img id="carta3" src=""width="500" onclick="SortearLugar()"></div>
+                </div>
+                <div class="lugar">
+                
+                    <h2 id="lugarAsi">
+                        
+                    </h2>
+                 </div>
+            </div>
+            <div class="lista">
+               <input type="button" value="Lista completa" onclick="TraerDatos()" class="botoncen">
+                <p id="demo" class>
+                </p>
+            
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
