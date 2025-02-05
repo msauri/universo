@@ -2,6 +2,17 @@ var cartas = [];
 var alumne
 var lugarAsignado
 
+function precargarImagenes() {
+  opcionesImagenes.forEach(function(src) {
+      var img = new Image();
+      img.src = src;
+  });
+}
+
+window.onload = function() {
+  precargarImagenes();
+};
+
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
@@ -20,20 +31,18 @@ var lugarAsignado
   firebase.database();
 
   var baseDatos=firebase.database()
-  var ref = baseDatos.ref("registro");
+  var ref = baseDatos.ref("creadores");
   
   
   function gotData(data){
     var registro = data.val();
-    var keys=Object.keys(registro);
+    var keys=Object.keys(registro).reverse();
     console.log(keys)
-    for (var i=0; i< keys.length; i++){
+    for (var i=0; i<10; i++){
         var k = keys[i];
         var nombre= registro[k].nombre
         var lugar= registro[k].lugar
-
-        console.log(nombre,lugar)
-        document.getElementById("demo").innerHTML += (nombre +" " + lugar+"<br>")
+        document.getElementById("demo").innerHTML += (nombre +": " + lugar+"<br>")
     }
    
   }
@@ -42,18 +51,35 @@ function errData(err){
 }
 
 
-opcionesLugares=["Universidad", "Escuela", "Aeropuerto", "Embajada", "Cárcel", "Ministerio", "Biblioteca", "Club", "Cancha", "Discoteca", "Establo", "Mansión", "Vivero", "laboratorio", "Clínica", "Base Espacial", "Baño", "Crucero", "Avión", "Shopping", "Sala de espera", "Oficina", "Consultorio", "Museo", "Cocina", "Vestuario", "Camarín", "Garaje", "Supermercado", "Baldío", "Comercio", "Peluquería", "Colegio", "Taller", "Fábrica", "Galería", "Deposito", "Iglesia-Templo", "Lavadero", "Gimnasio", "Cyber", "Unidad básica", "Estación de Tren/Micro", "Geriátrico", "Boliche", "Salón de fiestas", "Parque de diversiones", "Puerto", "Teatro", "Hospital", "Centro de estética", "Centro cultural", "Spa", "Albergue Transitorio", "Garita", "Natatorio", "Central Atómica", "Cuartel"]
+opcionesLugares=["desde el poema que tengas más cerca",
+  "desde una conversación vieja de whatsapp",
+  "desde un tuit que tengas guardado",
+  "desde el retrato de la característica de lo que más te guste de tu mejor amigue",
+  "desde una obsesión que te duela",
+  "con algo que no exista en internet",
+  "usando un color que detestes",
+  "un retrato de tu archimeganémesis",
+  "desde algo que sea una basura total",
+  "una escena de la última novela que leíste",
+  "con los subrayados de los libros que tengas más cerca",
+  "desde un libro de $5000 que encuentres en una librería de usados",
+  "engañando a una máquina",
+  "sobre alguna enfermedad común de otro siglo",
+  "arquitectura para fantasmas",
+  "sobre el primer libro que recuerda tu papá",
+  "una conspiración de tiktok",
+  "sobre un comportamiento de animales no humanos que te maraville, te de miedo o te parezca rarísimo",
+  "con la imagen de tu ex",
+  "la exaltación de un error"]
 opcionesImagenes=["img/01.png","img/02.png","img/03.png","img/04.png", "img/05.png", "img/06.png", "img/07.png","img/08.png","img/09.png","img/10.png","img/11.png","img/12.png","img/13.png", "img/14.png","img/15.png","img/16.png","img/17.png","img/18.png"]
 
 function SortearCartas(){
   
   var vacio = document.forms["FormularioAlumne"]["text_id"].value;
   if(vacio == ""){
-    alert("completa tu nombre y apellido porfa")
+    alert("completá tu nombre / alias / apodo / pseudónimo ")
   }else{
 
-  
-    
         alumne = document.getElementById("text_id").value;
         document.getElementById("FormularioAlumne").hidden=true
         var posicion=Math.floor(Math.random()*18);
@@ -92,7 +118,7 @@ function SortearCartas(){
 
 function SortearLugar(){
     //imprimir en pantalla Math.random(lugar)
-    var posicion2=Math.floor(Math.random()*58);
+    var posicion2=Math.floor(Math.random()*opcionesLugares.length);
 	//console.log(opciones[posicion]);
 	lugarAsignado=opcionesLugares[posicion2];
     document.getElementById("lugarAsi").innerHTML = lugarAsignado
@@ -120,17 +146,22 @@ function EnviarDatos(){
 function TraerDatos(){
     ref.on("value", gotData, errData)
     var f = document.getElementById("cartas");
+    var volver = document.getElementById("volver");
+    var lista = document.getElementById("btn-lista");
     if (f.style.display === "none") {
       f.style.display = "block";
+      volver.style.display = "none";
+      lista.disabled = false
     } else {
       f.style.display = "none";
+      volver.style.display = "block";
+      lista.disabled = true
     }
     var x = document.getElementById("div 1");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
       x.style.display = "none";
-    }
+      volver.style.display = "block";
+
 };
-
-
+function volver(){
+  location.reload();
+}

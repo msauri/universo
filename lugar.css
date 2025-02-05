@@ -39,14 +39,15 @@ input[type=text] {
     padding-left: 45vw;
     margin: 0 auto;
  }
- .botoncen{
-    margin: 0;
-    position: absolute;
-    left: 50%;
-    top:90%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
- }
+ .btn{
+    display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        align-content: center;
+        gap: 15px;
+    }
  .general{
     display: grid;
     grid-auto-rows: minmax(40vh,auto);
@@ -69,3 +70,11 @@ input[type=text] {
      padding-top: 40vh;
   top: 40%;   
  }
+ input:hover{
+    cursor: pointer;
+ }
+ #cartas img:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+    transition: transform 0.3s ease;
+}
