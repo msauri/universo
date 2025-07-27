@@ -9,7 +9,7 @@ function preload(){
   icono= loadImage("img/mausoleo.png")
   minVolOtro = parseFloat(localStorage.getItem('minVol'));
 }
-var vScale=15 // vScale is the scale factor for the video pixels
+var vScale= 10 // vScale is the scale factor for the video pixels
 function setup(){
   createCanvas(windowWidth,windowHeight)
   pixelDensity(1);
@@ -23,8 +23,8 @@ function setup(){
 
 
 }
-let am = 2
-let bm = 10
+let am = 1
+let bm = 7
 let minVol = 0.008;
 let maxVol = 0.1;
 function draw(){
@@ -63,16 +63,10 @@ if (video.width > 0 && video.height > 0) {
 
 
       var w = map(bright, 0, 255, 0, vScale*rounded);
-     // console.log(w)
-      //rectMode=CENTER
-      //fill(,alfa)
-      //noStroke();
-      //image(icono,x*vScale,y*vScale,w,w)
-      //rect(x*vScale,y*vScale,w,w);
+
       let color = [250,91,250, bright]
       strellita(w/2,w/6, x*vScale, y*vScale, color);
 
-      //clear()
 
     }
 
@@ -81,11 +75,14 @@ if (video.width > 0 && video.height > 0) {
   cosScale = 6
   sx = 1391/cosScale
   sy = 1129/cosScale
+  let deg = -90
+
   push();
-translate(windowWidth / 2, windowHeight / 2); // Mover el origen al centro
-rotate(90); // Rotar en base al tiempo (o podés usar un valor fijo)
-imageMode(CENTER);
-image(icono, 0, 0, sx, sy);
+    angleMode(DEGREES);
+    translate(windowWidth / 2, windowHeight / 2); // Mover el origen al centro
+    rotate(deg); // Rotar en base al tiempo (o podés usar un valor fijo)
+    imageMode(CENTER);
+    image(icono, 0, 0, sx, sy);
 pop();
 
 
